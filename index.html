@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Happy Birthday Sunny ❤️</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+:root{
+  --pink:#ff4f9a;
+  --dark:#5b0036;
+}
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  background: linear-gradient(135deg,#ff9a9e,#fad0c4);
+  overflow-x:hidden;
+  color:#333;
+}
+
+/* SECTION */
+section{
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:24px;
+  text-align:center;
+}
+
+.wrapper{
+  background:#fff;
+  padding:28px 22px;
+  border-radius:24px;
+  width:100%;
+  max-width:520px;
+  box-shadow:0 25px 45px rgba(0,0,0,.18);
+}
+
+/* TEXT */
+h1{
+  font-size:clamp(1.9rem,6vw,2.4rem);
+  color:var(--dark);
+  margin-bottom:14px;
+}
+
+h2{
+  font-size:clamp(1.4rem,5vw,1.8rem);
+  margin-bottom:12px;
+}
+
+p{
+  font-size:1.05rem;
+  line-height:1.6;
+  margin-bottom:18px;
+}
+
+/* BUTTONS */
+.btn{
+  display:block;
+  width:100%;
+  padding:15px;
+  font-size:1.1rem;
+  border:none;
+  border-radius:35px;
+  cursor:pointer;
+  margin-top:12px;
+  transition:transform .15s, box-shadow .2s;
+}
+
+.btn:active{
+  transform:scale(.97);
+}
+
+.btn-yes{
+  background:var(--pink);
+  color:white;
+  box-shadow:0 10px 20px rgba(255,79,154,.4);
+}
+
+.btn-no{
+  background:#f1f1f1;
+}
+
+/* GRID */
+.grid{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:14px;
+  margin-top:16px;
+}
+
+.box{
+  background:#fff;
+  border-radius:16px;
+  padding:14px;
+  box-shadow:0 8px 18px rgba(0,0,0,.12);
+}
+
+/* FLOATING HEARTS & FLOWERS */
+.float{
+  position:fixed;
+  bottom:-20px;
+  font-size:22px;
+  animation:floatUp 6s linear forwards;
+  z-index:9999;
+}
+
+@keyframes floatUp{
+  from{transform:translateY(0);opacity:1;}
+  to{transform:translateY(-110vh);opacity:0;}
+}
+
+/* CONFETTI */
+.confetti{
+  position:fixed;
+  top:-10px;
+  width:8px;
+  height:8px;
+  animation:fall 3.5s linear forwards;
+  z-index:9999;
+}
+
+@keyframes fall{
+  to{transform:translateY(110vh) rotate(360deg);opacity:0;}
+}
+
+/* HIDE */
+.hidden{display:none;}
+</style>
+</head>
+
+<body>
+
+<!-- PAGE 1 -->
+<section id="p1">
+  <div class="wrapper">
+    <h1>Two Hearts 💕 One Love</h1>
+    <p>
+      India 🇮🇳 ↔ Australia 🇦🇺<br>
+      Distance tried hard…<br>
+      Love won harder ❤️
+    </p>
+    <button class="btn btn-yes" onclick="go('p2')">Continue ➡️</button>
+  </div>
+</section>
+
+<!-- PAGE 2 -->
+<section id="p2" class="hidden">
+  <div class="wrapper">
+    <h1>Happy 30th Birthday Sunny 🎂</h1>
+    <p>
+      My gift isn’t a thing…<br>
+      It’s my love, care & forever 😌❤️
+    </p>
+    <button class="btn btn-yes" onclick="go('p3')">Tell me more 💖</button>
+  </div>
+</section>
+
+<!-- PAGE 3 -->
+<section id="p3" class="hidden">
+  <div class="wrapper">
+    <h2>Why Sunny is Special 🌞</h2>
+
+    <div class="grid">
+      <div class="box">💼 Super hardworking</div>
+      <div class="box">🧠 Smart & intelligent</div>
+      <div class="box">😂 Meme + Insta lover</div>
+      <div class="box">🎁 Buys me anything I ask</div>
+      <div class="box">❤️ Reddy fellow with golden heart</div>
+      <div class="box">😌 Cute 45kg trouble</div>
+    </div>
+
+    <button class="btn btn-yes" onclick="go('p4')">Next 😘</button>
+  </div>
+</section>
+
+<!-- PAGE 4 -->
+<section id="p4" class="hidden">
+  <div class="wrapper">
+    <h2>Do you want your gift? 🎁</h2>
+
+    <button class="btn btn-yes" onclick="go('p5')">YES 😍</button>
+    <button class="btn btn-no" onclick="nope()">NO 🙄</button>
+
+    <p id="wrong" class="hidden">
+      Nice try 😏<br>
+      You never say NO to me ❤️
+    </p>
+  </div>
+</section>
+
+<!-- PAGE 5 -->
+<section id="p5" class="hidden">
+  <div class="wrapper">
+    <h1>🎉 SURPRISE 🎉</h1>
+    <p>
+      Your gift is…<br><br>
+      <strong>ME loving you endlessly 💖</strong><br><br>
+      Through all memes, miles,<br>
+      and mad moments 😌
+    </p>
+    <h2>Happy Birthday Sunny 🥹🎂</h2>
+  </div>
+</section>
+
+<script>
+function go(id){
+  document.querySelectorAll("section").forEach(s=>s.classList.add("hidden"));
+  document.getElementById(id).classList.remove("hidden");
+  hearts();
+  confetti();
+}
+
+function nope(){
+  document.getElementById("wrong").classList.remove("hidden");
+  hearts();
+}
+
+function hearts(){
+  const icons=["❤️","💖","🌸","💐","💘"];
+  for(let i=0;i<10;i++){
+    let e=document.createElement("div");
+    e.className="float";
+    e.textContent=icons[Math.floor(Math.random()*icons.length)];
+    e.style.left=Math.random()*100+"vw";
+    e.style.animationDuration=4+Math.random()*3+"s";
+    document.body.appendChild(e);
+    setTimeout(()=>e.remove(),7000);
+  }
+}
+
+function confetti(){
+  for(let i=0;i<18;i++){
+    let c=document.createElement("div");
+    c.className="confetti";
+    c.style.left=Math.random()*100+"vw";
+    c.style.background=["#ff4f9a","#ffd700","#00e5ff","#7c4dff"][Math.floor(Math.random()*4)];
+    document.body.appendChild(c);
+    setTimeout(()=>c.remove(),4000);
+  }
+}
+
+setInterval(hearts,5000);
+</script>
+
+</body>
+</html>
